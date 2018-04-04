@@ -6,7 +6,7 @@
 /*   By: rzarate <rzarate@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/23 17:57:10 by kmckee            #+#    #+#             */
-/*   Updated: 2018/04/04 01:45:08 by rzarate          ###   ########.fr       */
+/*   Updated: 2018/04/04 04:26:09 by rzarate          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,6 @@ typedef	struct	s_vertices
 	int		n;
 	struct s_vertices	*next;
 }				t_vertices;
-
-typedef	struct	s_comment
-{
-	char	*s;
-	struct s_comment	*next;
-}				t_comment;
 
 typedef struct  s_room
 {
@@ -56,7 +50,6 @@ typedef	struct	s_lemin
 {
 	t_room		*rooms;
 	t_graph		*graph_data;
-	t_comment	*comments;
 	t_vertices	**adj_list;
 	// char		**name_number;
 }				t_lemin;
@@ -72,14 +65,14 @@ typedef	struct	s_lemin
 **	PARSING
 */
 
-void	parse_input(t_lemin *lemin);
-int		get_start_end(char *line, t_lemin *lemin);
+void		parse_input(t_lemin *lemin);
+int			get_start_end(char *line, t_lemin *lemin);
 
 /*
 **	BFS
 */
 
-
+int			*find_best_solution(t_lemin *lemin);
 
 /*
 **	UTILITIES

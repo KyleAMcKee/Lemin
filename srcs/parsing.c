@@ -6,7 +6,7 @@
 /*   By: rzarate <rzarate@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/03 17:13:56 by rzarate           #+#    #+#             */
-/*   Updated: 2018/04/04 01:45:00 by rzarate          ###   ########.fr       */
+/*   Updated: 2018/04/04 03:39:35 by rzarate          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,25 +54,34 @@ static	void	create_room(char *line, t_lemin *lemin, int start_end)
 	room_number = lemin->graph_data->rooms;
 	lemin->graph_data->rooms++;
 	add_room(&lemin->rooms, new_room(name, start_end, coords, room_number));
+	ft_putstr(line);
+	ft_putchar('\n');
 }
 
 static	void	get_rooms(char	**line, t_lemin *lemin)
 {
 	int		start_end;
 	
-	while (get_next_line(0, line) > 0)
+	while (get_next_line(0, line))
 	{
-		if (ft_strchr(*line, '-'))
-			break ;
 		if (ft_strlen(*line) > 4 && (*line)[0] == '#' && (*line)[1] == '#')
 		{
 			start_end = get_start_end(*line, lemin);
+			ft_putstr(*line);
+			ft_putchar('\n');
 			ft_strdel(line);
 			get_next_line(0, line);
 			create_room(*line, lemin, start_end);
 		}
+		else if (ft_strlen(*line) > 1 && (*line)[0] == '#')
+		{
+			ft_putstr((*line));
+			ft_putchar('\n');
+		}
 		else if (ft_wordcount(*line) == 3)
 			create_room(*line, lemin, 0);
+		else if (ft_strchr(*line, '-'))
+			break ;
 		else
 			error();
 		ft_strdel(line);
@@ -83,29 +92,45 @@ static	void	get_tunnels(char **line, t_lemin *lemin)
 {
 	char	**splitted_line;
 	t_room	*tmp;
+	t_room	*tmp2;
 
 	lemin->adj_list = (t_vertices **)ft_memalloc(sizeof(t_vertices *) * lemin->graph_data->rooms);
 	while (*line || get_next_line(0, line))
 	{
-		if (ft_strlen(*line) < 3 || ft_wordcountd(*line, '-') != 2)
-			break ;
-			// error();
-		else
+		if (ft_strlen(*line) > 2 || ft_wordcountd(*line, '-') == 2)
 		{
 			splitted_line = ft_strsplit(*line, '-');
 			tmp = lemin->rooms;
 			while (tmp)
 			{
 				if (ft_strequ(tmp->name, splitted_line[0]))
-					add_vertice(&lemin->adj_list[tmp->room_number], new_vertice(tmp->room_number));
-				if (ft_strequ(tmp->name, splitted_line[1]))
-					add_vertice(&lemin->adj_list[tmp->room_number], new_vertice(tmp->room_number));
+				{
+					tmp2 = lemin->rooms;
+					while(tmp2)
+					{
+						if (ft_strequ(tmp2->name, splitted_line[1]))
+							break ;
+						tmp2 = tmp2->next;
+					}
+					add_vertice(&lemin->adj_list[tmp->room_number], new_vertice(tmp2->room_number));
+					add_vertice(&lemin->adj_list[tmp2->room_number], new_vertice(tmp->room_number));
+				}
 				tmp = tmp->next;
 			}
+			ft_putstr(*line);
+			ft_putchar('\n');
 			ft_strdel(&splitted_line[0]);
 			ft_strdel(&splitted_line[1]);
 			free(splitted_line);
 		}
+		else if (ft_strlen(*line) > 1 && (*line)[0] == '#')
+		{
+			ft_putstr(*line);
+			ft_putchar('\n');
+		}
+		else
+			break ;
+			// error();
 		ft_strdel(line);
 	}
 }
@@ -114,8 +139,11 @@ void			parse_input(t_lemin *lemin)
 {
 	char	*line;
 
-	get_number_of_ants(lemin);
 	lemin->rooms = NULL;
+	get_number_of_ants(lemin);
+	ft_putstr("Number of ants: ");
+	ft_putnbr(lemin->graph_data->ants);
+	ft_putchar('\n');
 	get_rooms(&line, lemin);
 	if (lemin->graph_data->rooms == 0 || lemin->graph_data->end == 0
 			|| lemin->graph_data->start == 0)

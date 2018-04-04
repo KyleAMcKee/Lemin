@@ -21,7 +21,6 @@ GFX         =   mlx/libmlx.a -framework OpenGL -framework AppKit
 
 SOURCES		=	main.c \
 				parsing.c \
-				adjacency_list.c \
 				rooms_ll_functions.c \
 				adjlist_ll_functions.c \
 				utilities.c \
