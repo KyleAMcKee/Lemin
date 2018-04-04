@@ -10,7 +10,7 @@
 #                                                                              #
 #******************************************************************************#
 
-NAME		=	lemin
+NAME		=	lem-in
 SRCDIR		=	srcs/
 INCDIR		= 	includes/
 OBJDIR		=	temp/
@@ -19,7 +19,12 @@ CC			=	gcc
 FLAGS		=	-Wall -Werror -Wextra
 GFX         =   mlx/libmlx.a -framework OpenGL -framework AppKit
 
-SOURCES		=	main.c parse.c 
+SOURCES		=	main.c \
+				parsing.c \
+				adjacency_list.c \
+				rooms_ll_functions.c \
+				adjlist_ll_functions.c \
+				utilities.c \
  
 SRCS		=	$(addprefix $(SRCDIR), $(SOURCES))
 OBJS		=	$(addprefix $(OBJDIR), $(SOURCES:.c=.o))
