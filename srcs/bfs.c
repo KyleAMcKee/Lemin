@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bfs.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rzarate <rzarate@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kmckee <kmckee@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/04 04:18:49 by rzarate           #+#    #+#             */
-/*   Updated: 2018/04/05 14:58:56 by rzarate          ###   ########.fr       */
+/*   Updated: 2018/04/05 15:16:52 by kmckee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ void			solve(t_lemin *lemin)
 			{
 				if (find_room(lemin->rooms, lemin->adj_list[CURRENT->room_number]->n)->visited == FALSE)
 				{
-					find_room(lemin->rooms, lemin->adj_list[CURRENT->room_number]->n)->parent = queue->first->room->room_number;
+					find_room(lemin->rooms, lemin->adj_list[CURRENT->room_number]->n)->parent = CURRENT->room_number;
 					enqueue(queue, find_room(lemin->rooms, lemin->adj_list[CURRENT->room_number]->n));
 				}
 				lemin->adj_list[CURRENT->room_number] = lemin->adj_list[CURRENT->room_number]->next;
