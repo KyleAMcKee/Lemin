@@ -6,7 +6,7 @@
 /*   By: kmckee <kmckee@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/23 17:57:10 by kmckee            #+#    #+#             */
-/*   Updated: 2018/04/04 19:04:01 by kmckee           ###   ########.fr       */
+/*   Updated: 2018/04/04 19:09:39 by kmckee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ typedef struct  s_queue {
 
 void		parse_input(t_lemin *lemin);
 int			get_start_end(char *line, t_lemin *lemin);
+void		get_tunnels(char **line, t_lemin *lemin);
 
 /*
 **  QUEUE
