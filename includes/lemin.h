@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lemin.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rzarate <rzarate@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kmckee <kmckee@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/23 17:57:10 by kmckee            #+#    #+#             */
-/*   Updated: 2018/04/04 04:26:09 by rzarate          ###   ########.fr       */
+/*   Updated: 2018/04/04 19:04:01 by kmckee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,16 @@ typedef	struct	s_lemin
 	// char		**name_number;
 }				t_lemin;
 
+typedef struct  s_queue_item {
+    t_room   *room;
+    struct  s_node *next;
+}               t_queue_item;
+
+typedef struct  s_queue {
+    t_queue_item  *first;
+    t_queue_item  *last;
+}               t_queue;
+
 /*
 **	MACROS
 */
@@ -67,6 +77,15 @@ typedef	struct	s_lemin
 
 void		parse_input(t_lemin *lemin);
 int			get_start_end(char *line, t_lemin *lemin);
+
+/*
+**  QUEUE
+*/
+
+t_queue     *init_queue(void);
+void        enqueue(t_queue *queue, t_room *room);
+void        dequeue(t_queue *queue);
+int         queue_empty(t_queue *queue);
 
 /*
 **	BFS
