@@ -6,7 +6,7 @@
 /*   By: rzarate <rzarate@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/04 17:56:07 by kmckee            #+#    #+#             */
-/*   Updated: 2018/04/05 09:22:16 by rzarate          ###   ########.fr       */
+/*   Updated: 2018/04/05 13:28:46 by rzarate          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void    enqueue(t_queue *queue, t_room *room)
 	new = (t_queue_item *)ft_memalloc(sizeof(t_queue_item));
 	new->room = room;
 	new->next = NULL;
+	new->room->visited = TRUE;
 	if (!queue->first)
 		queue->first = new;
 	if (queue->last)
@@ -54,7 +55,6 @@ void    dequeue(t_queue *queue)
 
 	if (!queue->first)
 		error();
-	queue->first->room->visited = 1;
 	temp = queue->first;
 	queue->first = temp->next;
 	free(temp);

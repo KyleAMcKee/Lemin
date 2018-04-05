@@ -6,7 +6,7 @@
 /*   By: rzarate <rzarate@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/23 17:57:10 by kmckee            #+#    #+#             */
-/*   Updated: 2018/04/05 08:03:04 by rzarate          ###   ########.fr       */
+/*   Updated: 2018/04/05 12:50:20 by rzarate          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct  s_room
     int     start;
     int     end;
     int     visited;
+	int		parent;
     struct s_room	*next;
 }               t_room;
 
