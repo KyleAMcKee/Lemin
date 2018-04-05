@@ -6,7 +6,7 @@
 /*   By: rzarate <rzarate@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/03 17:13:56 by rzarate           #+#    #+#             */
-/*   Updated: 2018/04/04 03:39:35 by rzarate          ###   ########.fr       */
+/*   Updated: 2018/04/04 16:51:23 by rzarate          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,53 +84,6 @@ static	void	get_rooms(char	**line, t_lemin *lemin)
 			break ;
 		else
 			error();
-		ft_strdel(line);
-	}
-}
-
-static	void	get_tunnels(char **line, t_lemin *lemin)
-{
-	char	**splitted_line;
-	t_room	*tmp;
-	t_room	*tmp2;
-
-	lemin->adj_list = (t_vertices **)ft_memalloc(sizeof(t_vertices *) * lemin->graph_data->rooms);
-	while (*line || get_next_line(0, line))
-	{
-		if (ft_strlen(*line) > 2 || ft_wordcountd(*line, '-') == 2)
-		{
-			splitted_line = ft_strsplit(*line, '-');
-			tmp = lemin->rooms;
-			while (tmp)
-			{
-				if (ft_strequ(tmp->name, splitted_line[0]))
-				{
-					tmp2 = lemin->rooms;
-					while(tmp2)
-					{
-						if (ft_strequ(tmp2->name, splitted_line[1]))
-							break ;
-						tmp2 = tmp2->next;
-					}
-					add_vertice(&lemin->adj_list[tmp->room_number], new_vertice(tmp2->room_number));
-					add_vertice(&lemin->adj_list[tmp2->room_number], new_vertice(tmp->room_number));
-				}
-				tmp = tmp->next;
-			}
-			ft_putstr(*line);
-			ft_putchar('\n');
-			ft_strdel(&splitted_line[0]);
-			ft_strdel(&splitted_line[1]);
-			free(splitted_line);
-		}
-		else if (ft_strlen(*line) > 1 && (*line)[0] == '#')
-		{
-			ft_putstr(*line);
-			ft_putchar('\n');
-		}
-		else
-			break ;
-			// error();
 		ft_strdel(line);
 	}
 }

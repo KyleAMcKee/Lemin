@@ -6,7 +6,7 @@
 /*   By: rzarate <rzarate@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/23 17:57:10 by kmckee            #+#    #+#             */
-/*   Updated: 2018/04/04 04:26:09 by rzarate          ###   ########.fr       */
+/*   Updated: 2018/04/04 17:14:07 by rzarate          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ typedef	struct	s_lemin
 
 void		parse_input(t_lemin *lemin);
 int			get_start_end(char *line, t_lemin *lemin);
+void		get_tunnels(char **line, t_lemin *lemin);
 
 /*
 **	BFS

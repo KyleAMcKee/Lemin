@@ -6,7 +6,7 @@
 /*   By: rzarate <rzarate@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/04 04:18:49 by rzarate           #+#    #+#             */
-/*   Updated: 2018/04/04 05:55:03 by rzarate          ###   ########.fr       */
+/*   Updated: 2018/04/04 17:13:05 by rzarate          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 **	This is probably useless
 */
 
-static	void	get_num_of_start(t_room *rooms)
+static	int	get_num_of_start(t_room *rooms)
 {
 	t_room	*tmp;
 
@@ -26,7 +26,7 @@ static	void	get_num_of_start(t_room *rooms)
 	return (tmp->room_number);
 }
 
-static	void	get_num_of_end(t_room *rooms)
+static	int	get_num_of_end(t_room *rooms)
 {
 	t_room	*tmp;
 
