@@ -6,7 +6,7 @@
 /*   By: rzarate <rzarate@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/23 17:57:10 by kmckee            #+#    #+#             */
-/*   Updated: 2018/04/05 12:50:20 by rzarate          ###   ########.fr       */
+/*   Updated: 2018/04/05 14:58:29 by rzarate          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ typedef struct  s_queue {
 
 # define TRUE 1
 # define FALSE 0
+# define CURRENT queue->first->room
 
 /*
 **	PARSING

@@ -6,7 +6,7 @@
 /*   By: rzarate <rzarate@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/04 04:18:49 by rzarate           #+#    #+#             */
-/*   Updated: 2018/04/05 13:48:30 by rzarate          ###   ########.fr       */
+/*   Updated: 2018/04/05 14:58:56 by rzarate          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,56 +86,41 @@ static	int	get_num_of_start(t_room *rooms)
 
 void			solve(t_lemin *lemin)
 {
-	int				ended;
 	t_queue			*queue;
 	int				*moves;
 
 	moves = (int *)ft_memalloc(sizeof(int) * lemin->graph_data->rooms);
 	queue = init_queue();
-	// queue2 = init_queue();
-	ended = FALSE;
-	// t_room *tmp = lemin->rooms;
-	// while (tmp)
-	// {
-	// 	ft_putstr(tmp->name);
-	// 	tmp = tmp->next;
-	// }
-	// ft_putnbr(get_num_of_start(lemin->rooms));
-	// ft_putstr(find_room(lemin->rooms, get_num_of_start(lemin->rooms))->name);
-	// ft_putnbr(get_nth_room(lemin->rooms, get_num_of_start(lemin->rooms))->coords[1]);
 	enqueue(queue, find_room(lemin->rooms, get_num_of_start(lemin->rooms)));
-	queue->first->room->parent = -1;
-	// 	// RECURSIVE BACKTRACKING
-	// ft_putstr("\n\n\nBACKTRACKING:\n");
-	// bfs(lemin, queue, moves, 0);
+	CURRENT->parent = -1;
 
 
 	ft_putstr("\n\n\nITERATIVE:\n");
-	while (queue->first->room->end == FALSE)
+	while (CURRENT->end == FALSE)
 	{
 		if (queue_empty(queue) == TRUE)
 			error();
 		else
 		{
 			// ft_putstr(queue->first->room->name);
-			while (lemin->adj_list[queue->first->room->room_number])
+			while (lemin->adj_list[CURRENT->room_number])
 			{
-				if (find_room(lemin->rooms, lemin->adj_list[queue->first->room->room_number]->n)->visited == FALSE)
+				if (find_room(lemin->rooms, lemin->adj_list[CURRENT->room_number]->n)->visited == FALSE)
 				{
-					find_room(lemin->rooms, lemin->adj_list[queue->first->room->room_number]->n)->parent = queue->first->room->room_number;
-					enqueue(queue, find_room(lemin->rooms, lemin->adj_list[queue->first->room->room_number]->n));
+					find_room(lemin->rooms, lemin->adj_list[CURRENT->room_number]->n)->parent = queue->first->room->room_number;
+					enqueue(queue, find_room(lemin->rooms, lemin->adj_list[CURRENT->room_number]->n));
 				}
-				lemin->adj_list[queue->first->room->room_number] = lemin->adj_list[queue->first->room->room_number]->next;
+				lemin->adj_list[CURRENT->room_number] = lemin->adj_list[CURRENT->room_number]->next;
 			}
 			dequeue(queue);
 		}
 	}
 	while (queue)
 	{
-		ft_putstr(queue->first->room->name);
-		if (queue->first->room->parent == -1)
+		ft_putstr(CURRENT->name);
+		if (CURRENT->parent == -1)
 			break ;
-		queue->first->room = find_room(lemin->rooms, queue->first->room->parent);
+		CURRENT = find_room(lemin->rooms, CURRENT->parent);
 	}
 	del_queue(queue);
 }
