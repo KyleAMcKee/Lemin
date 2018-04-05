@@ -20,10 +20,12 @@ FLAGS		=	-Wall -Werror -Wextra
 GFX         =   mlx/libmlx.a -framework OpenGL -framework AppKit
 
 SOURCES		=	main.c \
-				parsing.c \
+				parse.c \
+				parse_tunnels.c \
+				bfs.c \
+				queue.c \
 				adjacency_list.c \
-				rooms_ll_functions.c \
-				adjlist_ll_functions.c \
+				rooms.c \
 				utilities.c \
  
 SRCS		=	$(addprefix $(SRCDIR), $(SOURCES))

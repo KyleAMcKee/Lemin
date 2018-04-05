@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lemin.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmckee <kmckee@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rzarate <rzarate@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/23 17:57:10 by kmckee            #+#    #+#             */
-/*   Updated: 2018/04/04 19:09:39 by kmckee           ###   ########.fr       */
+/*   Updated: 2018/04/05 08:03:04 by rzarate          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,11 @@ typedef	struct	s_lemin
 	t_room		*rooms;
 	t_graph		*graph_data;
 	t_vertices	**adj_list;
-	// char		**name_number;
 }				t_lemin;
 
 typedef struct  s_queue_item {
     t_room   *room;
-    struct  s_node *next;
+    struct  s_queue_item *next;
 }               t_queue_item;
 
 typedef struct  s_queue {
@@ -87,19 +86,23 @@ t_queue     *init_queue(void);
 void        enqueue(t_queue *queue, t_room *room);
 void        dequeue(t_queue *queue);
 int         queue_empty(t_queue *queue);
+void		del_queue(t_queue *queue);
 
 /*
 **	BFS
 */
 
-int			*find_best_solution(t_lemin *lemin);
+void		solve(t_lemin *lemin);
 
 /*
 **	UTILITIES
 */
 
-void	error(void);
+void		error(void);
+void		only_digits(char *s);
+void		finalize(t_lemin *lemin);
 
+t_room		*find_room(t_room *rooms, int i);
 t_room		*new_room(char *name, int start_end, int coords[2], int room_number);
 void		add_room(t_room **rooms, t_room *new_room);
 void		delone_room(t_room **rooms);

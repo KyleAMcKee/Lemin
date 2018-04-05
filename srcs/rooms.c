@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rooms_ll_functions.c                               :+:      :+:    :+:   */
+/*   rooms.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rzarate <rzarate@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/03 18:52:21 by rzarate           #+#    #+#             */
-/*   Updated: 2018/04/04 00:13:03 by rzarate          ###   ########.fr       */
+/*   Updated: 2018/04/05 09:19:52 by rzarate          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,11 @@ t_room	*new_room(char *name, int start_end, int coords[2], int room_number)
 void	add_room(t_room **rooms, t_room *new_room)
 {
 	t_room	*tmp;
+
 	if (rooms && *rooms && new_room)
 	{
 		tmp = *rooms;
-		while(tmp->next)
+		while (tmp->next)
 			tmp = tmp->next;
 		tmp->next = new_room;
 	}
@@ -48,6 +49,7 @@ void	add_room(t_room **rooms, t_room *new_room)
 void	delone_room(t_room **rooms)
 {
 	t_room	*tmp;
+
 	if (rooms && *rooms)
 	{
 		tmp = *rooms;

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rzarate <rzarate@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/03 17:13:56 by rzarate           #+#    #+#             */
-/*   Updated: 2018/04/04 16:51:23 by rzarate          ###   ########.fr       */
+/*   Updated: 2018/04/05 09:25:15 by rzarate          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 /*
 **	Parses # of ants and stores it in graph_data
-**	NOTE: I still need to make sure that only digits were inputted
 */
 
 static	void	get_number_of_ants(t_lemin *lemin)
@@ -32,7 +31,7 @@ static	void	get_number_of_ants(t_lemin *lemin)
 /*
 **	Rooms always come in with the following format
 **	[string:Name]->[space]->[int:coord[0]]->space->[int:coord[1]]
-**	NOTE: I still need to make sure coord[0][1] are only digits
+**	NOTE: Remember to check for comments after ##start or ##end
 */
 
 static	void	create_room(char *line, t_lemin *lemin, int start_end)
@@ -44,6 +43,8 @@ static	void	create_room(char *line, t_lemin *lemin, int start_end)
 
 	splitted_line = ft_strsplit(line, ' ');
 	name = ft_strdup(splitted_line[0]);
+	only_digits(splitted_line[1]);
+	only_digits(splitted_line[2]);
 	coords[0] = ft_atoi(splitted_line[1]);
 	coords[1] = ft_atoi(splitted_line[2]);
 	// This might be changed with a ft_2d_strdel
@@ -58,10 +59,14 @@ static	void	create_room(char *line, t_lemin *lemin, int start_end)
 	ft_putchar('\n');
 }
 
-static	void	get_rooms(char	**line, t_lemin *lemin)
+/*
+**	Adds new node to room linked list is valid
+*/
+
+static	void	get_rooms(char **line, t_lemin *lemin)
 {
 	int		start_end;
-	
+
 	while (get_next_line(0, line))
 	{
 		if (ft_strlen(*line) > 4 && (*line)[0] == '#' && (*line)[1] == '#')
@@ -87,6 +92,12 @@ static	void	get_rooms(char	**line, t_lemin *lemin)
 		ft_strdel(line);
 	}
 }
+
+/*
+**	1.- Parse # of ants
+**	2.- Parse rooms
+**	3.- Parse tunnels
+*/
 
 void			parse_input(t_lemin *lemin)
 {

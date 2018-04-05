@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   queue.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmckee <kmckee@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rzarate <rzarate@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/04 17:56:07 by kmckee            #+#    #+#             */
-/*   Updated: 2018/04/04 19:06:08 by kmckee           ###   ########.fr       */
+/*   Updated: 2018/04/05 09:22:16 by rzarate          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@
 
 t_queue *init_queue(void)
 {
-    t_queue *queue;
+	t_queue *queue;
 
-    queue = (t_queue*)malloc(sizeof(t_queue));
-    first = 0;
-    last = 0;
-    return (queue);
+	queue = (t_queue*)malloc(sizeof(t_queue));
+	queue->first = NULL;
+	queue->last = NULL;
+	return (queue);
 }
 
 /*
@@ -32,9 +32,11 @@ t_queue *init_queue(void)
 
 void    enqueue(t_queue *queue, t_room *room)
 {
-    t_queue_item* new = malloc(sizeof(t_queue_item));
+	t_queue_item	*new;
+
+	new = (t_queue_item *)ft_memalloc(sizeof(t_queue_item));
 	new->room = room;
-	new->next = 0;
+	new->next = NULL;
 	if (!queue->first)
 		queue->first = new;
 	if (queue->last)
@@ -48,21 +50,42 @@ void    enqueue(t_queue *queue, t_room *room)
 
 void    dequeue(t_queue *queue)
 {
-    t_queue_item *temp;
+	t_queue_item *temp;
 
-    if (!queue->first)
-        return (0);
-    queue->first->room->visited = 1;
-    temp = queue->first;
-    queue->first = temp->next;
-    free (temp);
+	if (!queue->first)
+		error();
+	queue->first->room->visited = 1;
+	temp = queue->first;
+	queue->first = temp->next;
+	free(temp);
+	temp = NULL;
 }
+
+/*
+**	Checks if queue is empty
+*/
 
 int     queue_empty(t_queue *queue)
 {
-    if (queue->first)
-        return (1);
-    return (0);
+	if (queue->first)
+		return (FALSE);
+	return (TRUE);
 }
 
+/*
+**	
+*/
 
+void	del_queue(t_queue *queue)
+{
+	t_queue_item *temp;
+
+	while (queue->first)
+	{
+    	temp = queue->first;
+		queue->first = temp->next;
+		free(temp);
+		temp = NULL;
+	}
+	free(queue);
+}
