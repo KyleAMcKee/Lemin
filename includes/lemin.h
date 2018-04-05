@@ -6,7 +6,7 @@
 /*   By: rzarate <rzarate@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/23 17:57:10 by kmckee            #+#    #+#             */
-/*   Updated: 2018/04/05 14:58:29 by rzarate          ###   ########.fr       */
+/*   Updated: 2018/04/05 16:12:34 by rzarate          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,13 @@
 /*
 **	STRUCTURES
 */
+
+typedef	struct	s_path
+{
+	int		*room_arr;
+	int		length;
+	struct s_path	*next;
+}				t_path;
 
 typedef	struct	s_vertices
 {
@@ -36,6 +43,7 @@ typedef struct  s_room
     int     end;
     int     visited;
 	int		parent;
+	int		distance;
     struct s_room	*next;
 }               t_room;
 
@@ -52,6 +60,7 @@ typedef	struct	s_lemin
 	t_room		*rooms;
 	t_graph		*graph_data;
 	t_vertices	**adj_list;
+	t_path		*paths;
 }				t_lemin;
 
 typedef struct  s_queue_item {
@@ -103,15 +112,21 @@ void		solve(t_lemin *lemin);
 void		error(void);
 void		only_digits(char *s);
 void		finalize(t_lemin *lemin);
-
 t_room		*find_room(t_room *rooms, int i);
+
 t_room		*new_room(char *name, int start_end, int coords[2], int room_number);
 void		add_room(t_room **rooms, t_room *new_room);
 void		delone_room(t_room **rooms);
 void		del_rooms(t_room **rooms);
+
 t_vertices	*new_vertice(int n);
 void		add_vertice(t_vertices **adj_list, t_vertices *new_vertice);
 void		delone_vertice(t_vertices **adj_list);
 void		del_vertices(t_vertices **adj_list);
+
+t_path		*new_path(int *n, int length);
+void		add_path(t_path **paths, t_path *new_path);
+void		delone_path(t_path **paths);
+void		del_paths(t_path **paths);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bfs.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmckee <kmckee@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rzarate <rzarate@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/04 04:18:49 by rzarate           #+#    #+#             */
-/*   Updated: 2018/04/05 15:16:52 by kmckee           ###   ########.fr       */
+/*   Updated: 2018/04/05 16:15:54 by rzarate          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,45 +39,10 @@ static	int	get_num_of_start(t_room *rooms)
 	return (tmp->room_number);
 }
 
-// void		bfs(t_lemin *lemin, t_queue *queue, int *moves, int n)
-// {
-// 	// ft_putstr(queue->first->room->name);
-// 	if (queue->first->room->end == TRUE)
-// 	{
-// 		int i;
-
-// 		i = -1;
-// 		moves[n] = queue->first->room->room_number + 1;
-// 		while (++i < n + 1)
-// 			ft_putstr(find_room(lemin->rooms, moves[i - 1])->name);
-// 		// return (n);
-// 	}
-// 	else if (queue_empty(queue) == TRUE)
-// 		error();
-// 	else
-// 	{
-		// if (!lemin->adj_list || !unvisited_room(lemin, queue->first->room->room_number))
-		// {
-		// 	ft_putstr("TEST");
-		// 	moves[--n] = 0;
-		// 	dequeue(queue);
-		// 	bfs(lemin, queue, moves, n);
-		// }
-// 		// else
-// 		// {
-// 		moves[n] = queue->first->room->room_number + 1;
-// 		while (lemin->adj_list[queue->first->room->room_number])
-// 		{
-// 			if (find_room(lemin->rooms, lemin->adj_list[queue->first->room->room_number]->n)->visited == FALSE)
-// 				enqueue(queue, find_room(lemin->rooms, lemin->adj_list[queue->first->room->room_number]->n));
-// 			lemin->adj_list[queue->first->room->room_number] = lemin->adj_list[queue->first->room->room_number]->next;
-// 		}
-// 		dequeue(queue);
-// 		bfs(lemin, queue, moves, ++n);
-// 		// }
-// 	}
-
-// }
+void	store_path(t_queue *queue, t_lemin *lemin)
+{
+	add_path()
+}
 
 /*
 **	Finds all clear paths from start to end and finds the best way
@@ -89,13 +54,11 @@ void			solve(t_lemin *lemin)
 	t_queue			*queue;
 	int				*moves;
 
+	lemin->paths = (t_path *)ft_memalloc(sizeof(t_path));
 	moves = (int *)ft_memalloc(sizeof(int) * lemin->graph_data->rooms);
 	queue = init_queue();
 	enqueue(queue, find_room(lemin->rooms, get_num_of_start(lemin->rooms)));
 	CURRENT->parent = -1;
-
-
-	ft_putstr("\n\n\nITERATIVE:\n");
 	while (CURRENT->end == FALSE)
 	{
 		if (queue_empty(queue) == TRUE)
@@ -108,6 +71,7 @@ void			solve(t_lemin *lemin)
 				if (find_room(lemin->rooms, lemin->adj_list[CURRENT->room_number]->n)->visited == FALSE)
 				{
 					find_room(lemin->rooms, lemin->adj_list[CURRENT->room_number]->n)->parent = CURRENT->room_number;
+					find_room(lemin->rooms, lemin->adj_list[CURRENT->room_number]->n)->distance = CURRENT->distance + 1;
 					enqueue(queue, find_room(lemin->rooms, lemin->adj_list[CURRENT->room_number]->n));
 				}
 				lemin->adj_list[CURRENT->room_number] = lemin->adj_list[CURRENT->room_number]->next;
@@ -115,12 +79,13 @@ void			solve(t_lemin *lemin)
 			dequeue(queue);
 		}
 	}
-	while (queue)
-	{
-		ft_putstr(CURRENT->name);
-		if (CURRENT->parent == -1)
-			break ;
-		CURRENT = find_room(lemin->rooms, CURRENT->parent);
-	}
+	store_path(queue, lemin);
+	// while (queue)
+	// {
+	// 	ft_putstr(CURRENT->name);
+	// 	if (CURRENT->parent == -1)
+	// 		break ;
+	// 	CURRENT = find_room(lemin->rooms, CURRENT->parent);
+	// }
 	del_queue(queue);
 }
