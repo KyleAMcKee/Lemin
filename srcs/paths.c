@@ -6,24 +6,25 @@
 /*   By: rzarate <rzarate@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/05 15:46:43 by rzarate           #+#    #+#             */
-/*   Updated: 2018/04/05 16:10:14 by rzarate          ###   ########.fr       */
+/*   Updated: 2018/04/06 08:02:56 by rzarate          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-t_path	*new_path(int *n, int length)
+t_path	*new_path(int **n, int length)
 {
 	t_path	*path;
 	int		i;
 
 	i = -1;
 	path = (t_path *)ft_memalloc(sizeof(t_path));
-	path->length = length;
-	path->room_arr = (int *)ft_memalloc(sizeof(int) * length);
+	path->len = length;
+	path->moves = (int *)ft_memalloc(sizeof(int) * length);
 	while (++i < length)
-		path->room_arr[i] = n[i];
+		path->moves[i] = (*n)[i];
 	path->next = NULL;
+	free(*n);
 	return (path);
 }
 
@@ -60,7 +61,7 @@ void		del_paths(t_path **paths)
 	if (paths)
 	{
 		while (*paths)
-			delone_vertice(paths);
+			delone_path(paths);
 	}
 	paths = NULL;
 }

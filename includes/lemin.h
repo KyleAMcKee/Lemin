@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lemin.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmckee <kmckee@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rzarate <rzarate@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/23 17:57:10 by kmckee            #+#    #+#             */
-/*   Updated: 2018/04/05 16:38:04 by kmckee           ###   ########.fr       */
+/*   Updated: 2018/04/06 12:43:43 by rzarate          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
 
 typedef	struct	s_path
 {
-	int		*room_arr;
-	int		length;
+	int		*moves;
+	int		len;
 	struct s_path	*next;
 }				t_path;
 
@@ -94,11 +94,11 @@ void		get_tunnels(char **line, t_lemin *lemin);
 **  QUEUE
 */
 
-t_queue     *init_queue(void);
+t_queue     *init_queue(t_lemin *lemin);
 void        enqueue(t_queue *queue, t_room *room);
 void        dequeue(t_queue *queue);
 int         queue_empty(t_queue *queue);
-void		del_queue(t_queue *queue);
+void	del_queue(t_queue **queue);
 
 /*
 **	BFS
@@ -112,9 +112,11 @@ void		solve(t_lemin *lemin);
 
 void		error(void);
 void		only_digits(char *s);
-void		finalize(t_lemin *lemin);
-t_room		*find_room(t_room *rooms, int i);
+void		finalize_lemin(t_lemin *lemin);
+int			get_num_of_start(t_room *rooms);
 
+t_room		*find_room(t_room *rooms, int i);
+void		initialize_rooms(t_room *rooms);
 t_room		*new_room(char *name, int start_end, int coords[2], int room_number);
 void		add_room(t_room **rooms, t_room *new_room);
 void		delone_room(t_room **rooms);
@@ -123,9 +125,9 @@ void		del_rooms(t_room **rooms);
 t_vertices	*new_vertice(int n);
 void		add_vertice(t_vertices **adj_list, t_vertices *new_vertice);
 void		delone_vertice(t_vertices **adj_list);
-void		del_vertices(t_vertices **adj_list);
+void		del_vertices(t_vertices ***adj_list, int len);
 
-t_path		*new_path(int *n, int length);
+t_path		*new_path(int **n, int length);
 void		add_path(t_path **paths, t_path *new_path);
 void		delone_path(t_path **paths);
 void		del_paths(t_path **paths);

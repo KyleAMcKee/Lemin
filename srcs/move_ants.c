@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   move_ants.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmckee <kmckee@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rzarate <rzarate@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/05 15:28:08 by kmckee            #+#    #+#             */
-/*   Updated: 2018/04/05 16:36:24 by kmckee           ###   ########.fr       */
+/*   Updated: 2018/04/06 06:40:12 by rzarate          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-int     number_of_paths(t_paths *paths)
+int     number_of_paths(t_path *paths)
 {
     int i;
 
@@ -30,14 +30,14 @@ void    print_move(t_room *current)
     write(1, current->name, 1);
 }
 
-void     find_end(t_graph *graph, t_paths *paths)
+void     find_end(t_graph *graph, t_path *paths)
 {
     int i;
 
     while (paths)
     {
         i = 0;
-        while (path->moves[i] != graph->end)
+        while (paths->moves[i] != graph->end)
             i++;
         paths->len = i;
         if (paths->len == 0)
@@ -46,11 +46,12 @@ void     find_end(t_graph *graph, t_paths *paths)
     }
 }
 
-void    move_ants(t_graph *graph, t_room *rooms, t_paths *paths)
+void    move_ants(t_graph *graph, t_room *rooms, t_path *paths)
 {
     int i;
     static int ant;
     t_room *current;
+	t_room *previous;
 
     ant = 1;
     while (paths)
@@ -70,7 +71,7 @@ void    move_ants(t_graph *graph, t_room *rooms, t_paths *paths)
     }
 }
 
-void    move_ants(t_graph *graph, t_room *rooms, t_paths *paths)
+void    move_ants(t_graph *graph, t_room *rooms, t_path *paths)
 {
     int arr_size;
     int num_paths;
@@ -78,7 +79,7 @@ void    move_ants(t_graph *graph, t_room *rooms, t_paths *paths)
     //arr_size = find_end(graph, moves);
     //end_room = find_room(rooms, moves[arr_size]);
     num_paths = number_of_paths(paths);
-    find_room(rooms, moves[0])->ants = graph->ants;
+    find_room(rooms, paths->moves[0])->ants = graph->ants;
     while (end_room->ants < graph->ants)
     {
         //find closest to end with ant;

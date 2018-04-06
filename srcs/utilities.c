@@ -6,7 +6,7 @@
 /*   By: rzarate <rzarate@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/03 17:03:46 by rzarate           #+#    #+#             */
-/*   Updated: 2018/04/05 09:18:24 by rzarate          ###   ########.fr       */
+/*   Updated: 2018/04/06 12:43:14 by rzarate          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,13 @@ t_room	*find_room(t_room *rooms, int i)
 	t_room	*tmp;
 
 	tmp = rooms;
-	while (tmp && tmp->room_number != i)
+	while (tmp)
+	{
+		if (tmp->room_number == i)
+			return (tmp);
 		tmp = tmp->next;
-	return (tmp);
+	}
+	return (NULL);
 }
 
 /*
@@ -81,10 +85,24 @@ void	only_digits(char *s)
 
 void	finalize_lemin(t_lemin *lemin)
 {
-	del_vertices(lemin->adj_list);
+	del_vertices(&lemin->adj_list, lemin->graph_data->rooms);
 	free(lemin->adj_list);
 	del_rooms(&lemin->rooms);
 	free(lemin->rooms);
 	free(lemin->graph_data);
 	free(lemin);
+}
+
+/*
+**	This is probably useless
+*/
+
+int		get_num_of_start(t_room *rooms)
+{
+	t_room	*tmp;
+
+	tmp = rooms;
+	while (tmp->start == FALSE)
+		tmp = tmp->next;
+	return (tmp->room_number);
 }

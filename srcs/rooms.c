@@ -6,7 +6,7 @@
 /*   By: rzarate <rzarate@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/03 18:52:21 by rzarate           #+#    #+#             */
-/*   Updated: 2018/04/05 09:19:52 by rzarate          ###   ########.fr       */
+/*   Updated: 2018/04/06 12:32:17 by rzarate          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void	delone_room(t_room **rooms)
 	if (rooms && *rooms)
 	{
 		tmp = *rooms;
+		ft_strdel(&(*rooms)->name);
 		*rooms = (*rooms)->next;
 		free(tmp);
 		tmp = NULL;
@@ -67,4 +68,20 @@ void	del_rooms(t_room **rooms)
 			delone_room(rooms);
 	}
 	rooms = NULL;
+}
+
+void	initialize_rooms(t_room *rooms)
+{
+	t_room	*tmp;
+
+	if (rooms)
+	{
+		tmp = rooms;
+		while (tmp)
+		{
+			tmp->parent = -1;
+			tmp->distance = 0;
+			tmp = tmp->next;
+		}
+	}
 }
