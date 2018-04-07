@@ -6,26 +6,14 @@
 /*   By: rzarate <rzarate@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/04 04:18:49 by rzarate           #+#    #+#             */
-/*   Updated: 2018/04/06 12:55:33 by rzarate          ###   ########.fr       */
+/*   Updated: 2018/04/07 11:01:53 by rzarate          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
 void	store_path(t_queue *queue, t_lemin *lemin)
-{	
-	// 	ft_putchar('\n');
-	// 	ft_putchar('\n');
-	// while (queue)
-	// {
-	// 	ft_putstr(CURRENT->name);
-	// 	ft_putchar('-');
-	// 	ft_putnbr(CURRENT->distance);
-	// 	ft_putchar('\n');
-	// 	if (CURRENT->parent == -1)
-	// 		break ;
-	// 	CURRENT = find_room(lemin->rooms, CURRENT->parent);
-	// }
+{
 	int	*n;
 	int len;
 	int	i;
@@ -40,7 +28,7 @@ void	store_path(t_queue *queue, t_lemin *lemin)
 			break ;
 		CURRENT = find_room(lemin->rooms, CURRENT->parent);
 	}
-	add_path(&lemin->paths, new_path(&n, len)); 
+	add_path(&lemin->paths, new_path(&n, len));
 }
 
 t_queue		*find_path(t_lemin *lemin)
@@ -81,32 +69,27 @@ void			solve(t_lemin *lemin)
 
 	lemin->paths = NULL;
 	queue = NULL;
-	// while (TRUE)
-	// {
-		queue = find_path(lemin);
-		if (!queue && !lemin->paths)
-			error();
-		// else if (!queue && lemin->paths)
-		// 	break ;
-		store_path(queue, lemin);
-		//remove rooms
-		del_queue(&queue);
-		// queue = find_path(lemin);
-		// if (!queue && !lemin->paths)
-		// 	error();
-		// // else if (!queue && lemin->paths)
-		// // 	break ;
-		// store_path(queue, lemin);
-		// //remove rooms
-		// del_queue(&queue);
+	queue = find_path(lemin);
+	if (!queue && !lemin->paths)
+		error();
+	store_path(queue, lemin);
+	del_queue(&queue);
+	// queue = find_path(lemin);
+	// if (!queue && !lemin->paths)
+	// 	error();
+	// // else if (!queue && lemin->paths)
+	// // 	break ;
+	// store_path(queue, lemin);
+	// //remove rooms
+	// del_queue(&queue);
 	// // }
-	// int i;
-	// while(lemin->paths)
-	// {
-	// 	i = -1;
-	// 	while (++i < lemin->paths->len)
-	// 		ft_putstr(find_room(lemin->rooms, lemin->paths->moves[i])->name);
-	// 	ft_putchar('\n');
-	// 	lemin->paths = lemin->paths->next;
-	// }
+	int i;
+	while(lemin->paths)
+	{
+		i = -1;
+		while (++i < lemin->paths->len)
+			ft_putstr(find_room(lemin->rooms, lemin->paths->moves[i])->name);
+		ft_putchar('\n');
+		lemin->paths = lemin->paths->next;
+	}
 }
