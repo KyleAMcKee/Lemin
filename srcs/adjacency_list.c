@@ -6,7 +6,7 @@
 /*   By: rzarate <rzarate@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/04 00:07:34 by rzarate           #+#    #+#             */
-/*   Updated: 2018/04/08 22:28:28 by rzarate          ###   ########.fr       */
+/*   Updated: 2018/04/09 15:13:10 by rzarate          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,7 @@ void		del_vertices(t_vertices ***adj_list, int len)
 	if (adj_list)
 	{
 		while (++i < len)
-		{
 			delone_vertice(*adj_list);
-		}
 	}
 	adj_list = NULL;
 }

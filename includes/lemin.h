@@ -6,7 +6,7 @@
 /*   By: rzarate <rzarate@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/23 17:57:10 by kmckee            #+#    #+#             */
-/*   Updated: 2018/04/09 12:15:24 by rzarate          ###   ########.fr       */
+/*   Updated: 2018/04/09 14:22:00 by rzarate          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,9 +114,10 @@ void		error(void);
 void		only_digits(char *s);
 void		finalize_lemin(t_lemin *lemin);
 int			get_num_of_start(t_room *rooms);
+int			check_if_part_of_path(t_lemin *lemin, int n);
 
 t_room		*find_room(t_room *rooms, int i);
-void		initialize_rooms(t_room *rooms);
+void		initialize_rooms(t_lemin *lemin, t_room *rooms);
 t_room		*new_room(char *name, int start_end, int coords[2], int room_number);
 void		add_room(t_room **rooms, t_room *new_room);
 void		delone_room(t_room **rooms);

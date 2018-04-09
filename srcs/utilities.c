@@ -6,7 +6,7 @@
 /*   By: rzarate <rzarate@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/03 17:03:46 by rzarate           #+#    #+#             */
-/*   Updated: 2018/04/06 12:43:14 by rzarate          ###   ########.fr       */
+/*   Updated: 2018/04/09 14:20:24 by rzarate          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,4 +105,23 @@ int		get_num_of_start(t_room *rooms)
 	while (tmp->start == FALSE)
 		tmp = tmp->next;
 	return (tmp->room_number);
+}
+
+int		check_if_part_of_path(t_lemin *lemin, int n)
+{
+	t_path	*paths;
+	int		i;
+
+	paths = lemin->paths;
+	while (paths)
+	{
+		i = -1;
+		while (++i < paths->len)
+		{
+			if (paths->moves[i] == n)
+				return (TRUE);
+		}
+		paths = paths->next;
+	}
+	return (FALSE);
 }

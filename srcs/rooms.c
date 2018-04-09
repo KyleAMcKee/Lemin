@@ -6,7 +6,7 @@
 /*   By: rzarate <rzarate@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/03 18:52:21 by rzarate           #+#    #+#             */
-/*   Updated: 2018/04/08 18:38:39 by rzarate          ###   ########.fr       */
+/*   Updated: 2018/04/09 15:10:28 by rzarate          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	del_rooms(t_room **rooms)
 	rooms = NULL;
 }
 
-void	initialize_rooms(t_room *rooms)
+void	initialize_rooms(t_lemin *lemin, t_room *rooms)
 {
 	t_room	*tmp;
 
@@ -80,7 +80,10 @@ void	initialize_rooms(t_room *rooms)
 		while (tmp)
 		{
 			tmp->parent = -1;
-			tmp->visited = FALSE;
+			if (check_if_part_of_path(lemin, tmp->room_number) == FALSE)
+				tmp->visited = FALSE;
+			if (tmp->start == TRUE || tmp->end == TRUE)
+				tmp->visited = FALSE;
 			tmp->distance = 0;
 			tmp = tmp->next;
 		}

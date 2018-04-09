@@ -6,7 +6,7 @@
 /*   By: rzarate <rzarate@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/04 17:56:07 by kmckee            #+#    #+#             */
-/*   Updated: 2018/04/08 18:34:13 by rzarate          ###   ########.fr       */
+/*   Updated: 2018/04/09 15:14:01 by rzarate          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,6 @@ void    dequeue(t_queue *queue)
 		error();
 	temp = queue->first;
 	queue->first = temp->next;
-	if (queue->first == NULL)
-		ft_putstr("nullll\n");
 	free(temp);
 	temp = NULL;
 }
