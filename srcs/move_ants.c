@@ -3,14 +3,45 @@
 /*                                                        :::      ::::::::   */
 /*   move_ants.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rzarate <rzarate@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kmckee <kmckee@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/05 15:28:08 by kmckee            #+#    #+#             */
-/*   Updated: 2018/04/06 06:40:12 by rzarate          ###   ########.fr       */
+/*   Updated: 2018/04/09 15:14:14 by kmckee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
+
+/*
+**  LCM = A * B / GCD(A, B)
+*/
+
+int     gcd(int a, int b)
+{
+    if (b == 0)
+        return (a);
+    return gcd(b, a % b); 
+}
+
+int     least_common_multiple(t_path *paths)
+{
+    int lcm;
+    int i;
+
+    lcm = paths->len;
+    while (paths->next)
+        lcm = (paths->next->len * lcm) / (gcd(paths->next->len, lcm));
+    return (lcm);
+}
+
+void    free_last(t_path *paths)
+{
+    t_path *tmp;
+    while (paths->next)
+        paths = paths->next;
+    free(paths);
+    paths->next = NULL;
+}
 
 int     number_of_paths(t_path *paths)
 {
@@ -71,19 +102,31 @@ void    move_ants(t_graph *graph, t_room *rooms, t_path *paths)
     }
 }
 
-void    move_ants(t_graph *graph, t_room *rooms, t_path *paths)
+void    manage_ants(t_graph *graph, t_room *rooms, t_path *paths)
 {
-    int arr_size;
     int num_paths;
+    int i;
+    int lcm;
+    t_room *end_room;
 
-    //arr_size = find_end(graph, moves);
-    //end_room = find_room(rooms, moves[arr_size]);
     num_paths = number_of_paths(paths);
     find_room(rooms, paths->moves[0])->ants = graph->ants;
+    lcm = least_common_multiple(paths)
     while (end_room->ants < graph->ants)
     {
-        //find closest to end with ant;
-        //move ant;
-        //repeat until start;
+        i = 0;
+        while (lcm > graph->ants)
+        {
+            free_last(paths);
+            num_paths = number_of_paths(paths);
+            lcm = least_common_multiple(paths);
+        }
+        while (i < num_paths)
+        {
+            //find closest to end with ant;
+            //move ant;
+            //repeat until start;
+            i++;
+        }
     }
 }
