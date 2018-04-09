@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lemin.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rzarate <rzarate@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kmckee <kmckee@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/23 17:57:10 by kmckee            #+#    #+#             */
-/*   Updated: 2018/04/09 14:22:00 by rzarate          ###   ########.fr       */
+/*   Updated: 2018/04/09 16:27:49 by kmckee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,5 +132,11 @@ t_path		*new_path(int **n, int length);
 void		add_path(t_path **paths, t_path *new_path);
 void		delone_path(t_path **paths);
 void		del_paths(t_path **paths);
+
+/*
+**  MOVE ANTS
+*/
+
+void    manage_ants(t_lemin *lemin);
 
 #endif
