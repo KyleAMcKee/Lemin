@@ -6,7 +6,7 @@
 /*   By: rzarate <rzarate@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/04 04:18:49 by rzarate           #+#    #+#             */
-/*   Updated: 2018/04/07 11:01:53 by rzarate          ###   ########.fr       */
+/*   Updated: 2018/04/09 12:36:48 by rzarate          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,66 @@ t_queue		*find_path(t_lemin *lemin)
 	return (queue);
 }
 
+void	remove_rooms(t_lemin *lemin)
+{
+	t_path			*paths;
+	t_vertices		*adj_list;
+	int				current;
+	int				next;
+	int				i;
+
+	i = -1;
+	paths = lemin->paths;
+	while (paths->next)
+		paths = paths->next;
+	while (++i < paths->len - 1)
+	{
+		current = paths->moves[i];
+		next = paths->moves[i + 1];
+		
+		adj_list = lemin->adj_list[current];
+		while (adj_list->n != next)
+			adj_list = adj_list->next;
+		delone_vertice(&adj_list);
+
+		adj_list =lemin->adj_list[next];
+		while (adj_list->n != current)
+			adj_list = adj_list->next;
+		delone_vertice(&adj_list);
+	}
+}
+
+void	print_adj(t_vertices **adj_list, int n)
+{
+	t_vertices *tmp;
+	int i;
+
+	i = -1;
+	while (++i < n)
+	{
+		tmp = adj_list[i];
+		ft_putstr("-TEST1-");
+		ft_putstr("Room #: ");
+		ft_putnbr(i);
+		ft_putstr(" - ");
+		while (tmp)
+		{
+			ft_putstr("-TEST2-");
+			ft_putnbr(tmp->n);
+			ft_putchar('-');
+			tmp = tmp ->next;
+		}
+		ft_putstr("-TEST3-");
+		ft_putchar('\n');
+	}
+}
+
 /*
 **	Finds all clear paths from start to end and finds the best way
 **	to collectively move ants
 */
 
-void			solve(t_lemin *lemin)
+void	         		solve(t_lemin *lemin)
 {
 	t_queue	*queue;
 
@@ -73,16 +127,18 @@ void			solve(t_lemin *lemin)
 	if (!queue && !lemin->paths)
 		error();
 	store_path(queue, lemin);
+	ft_putstr("Before:\n");
+	print_adj(lemin->adj_list, lemin->graph_data->rooms);
+	remove_rooms(lemin);
+	ft_putstr("After:\n");
+	print_adj(lemin->adj_list, lemin->graph_data->rooms);
 	del_queue(&queue);
+
 	// queue = find_path(lemin);
 	// if (!queue && !lemin->paths)
 	// 	error();
-	// // else if (!queue && lemin->paths)
-	// // 	break ;
 	// store_path(queue, lemin);
-	// //remove rooms
 	// del_queue(&queue);
-	// // }
 	int i;
 	while(lemin->paths)
 	{

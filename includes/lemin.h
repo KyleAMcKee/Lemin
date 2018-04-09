@@ -6,7 +6,7 @@
 /*   By: rzarate <rzarate@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/23 17:57:10 by kmckee            #+#    #+#             */
-/*   Updated: 2018/04/06 12:43:43 by rzarate          ###   ########.fr       */
+/*   Updated: 2018/04/09 12:15:24 by rzarate          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ t_queue     *init_queue(t_lemin *lemin);
 void        enqueue(t_queue *queue, t_room *room);
 void        dequeue(t_queue *queue);
 int         queue_empty(t_queue *queue);
-void	del_queue(t_queue **queue);
+void		del_queue(t_queue **queue);
 
 /*
 **	BFS

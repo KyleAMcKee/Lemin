@@ -6,7 +6,7 @@
 /*   By: rzarate <rzarate@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/03 18:52:21 by rzarate           #+#    #+#             */
-/*   Updated: 2018/04/06 12:32:17 by rzarate          ###   ########.fr       */
+/*   Updated: 2018/04/08 18:38:39 by rzarate          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ void	initialize_rooms(t_room *rooms)
 		while (tmp)
 		{
 			tmp->parent = -1;
+			tmp->visited = FALSE;
 			tmp->distance = 0;
 			tmp = tmp->next;
 		}
