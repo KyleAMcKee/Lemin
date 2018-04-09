@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rzarate <rzarate@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kmckee <kmckee@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/23 17:56:25 by kmckee            #+#    #+#             */
-/*   Updated: 2018/04/06 12:57:03 by rzarate          ###   ########.fr       */
+/*   Updated: 2018/04/09 16:46:45 by kmckee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int	main(void)
 	lemin = (t_lemin *)ft_memalloc(sizeof(t_lemin));
 	parse_input(lemin);
 	solve(lemin);
+	manage_ants(lemin);
 	finalize_lemin(lemin);
 	return (0);
 }
