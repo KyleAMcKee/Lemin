@@ -6,7 +6,7 @@
 /*   By: kmckee <kmckee@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/23 17:57:10 by kmckee            #+#    #+#             */
-/*   Updated: 2018/04/10 14:32:35 by kmckee           ###   ########.fr       */
+/*   Updated: 2018/04/10 15:14:30 by kmckee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,14 +75,6 @@ typedef struct		s_queue
 	t_queue_item	*first;
 	t_queue_item	*last;
 }					t_queue;
-
-typedef struct		s_ant_moves
-{
-	int				ant_id;
-	char			*room;
-	int				last;
-	struct s_ant_moves	*next;
-}					t_ant_moves;
 
 /*
 **	MACROS
