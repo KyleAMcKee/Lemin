@@ -6,7 +6,7 @@
 /*   By: kmckee <kmckee@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/05 15:28:08 by kmckee            #+#    #+#             */
-/*   Updated: 2018/04/10 15:09:14 by kmckee           ###   ########.fr       */
+/*   Updated: 2018/04/10 15:19:44 by kmckee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,13 +71,13 @@ void    print_move(t_room *current)
     write(1, " ", 1);
 }
 
-void    move_ants(t_room *rooms, t_path *paths)
+void    move_ants(t_room *rooms, t_path *paths, t_graph *graph)
 {
     int i;
     static int ant;
     t_room *current;
 	t_room *previous;
-
+  
     while (paths)
     {
         i = paths->len - 1;
@@ -87,7 +87,6 @@ void    move_ants(t_room *rooms, t_path *paths)
             previous = find_room(rooms, paths->moves[i - 1]);
             if (previous->ants)
             {
-                //previous->ants--;
                 if (current->end == 1)
                 {
                     current->ants++;
@@ -101,7 +100,8 @@ void    move_ants(t_room *rooms, t_path *paths)
                 else
                     current->ants = previous->ants;
                 print_move(current);
-                //add move to linked list;
+                if (current->ants == graph->ants)
+                    return ;
             }
             i--;
         }
@@ -114,7 +114,6 @@ void    manage_ants(t_lemin *lemin)
     int num_paths;
     int lcm;
     t_room *end_room;
-    //t_list *ant_paths;
 
     num_paths = number_of_paths(lemin->paths);   
     end_room = find_room(lemin->rooms, lemin->paths->moves[lemin->paths->len - 1]);
@@ -129,7 +128,7 @@ void    manage_ants(t_lemin *lemin)
             num_paths = number_of_paths(lemin->paths);
             lcm = least_common_multiple(lemin->paths);
         }
-        move_ants(lemin->rooms, lemin->paths);
+        move_ants(lemin->rooms, lemin->paths, lemin->graph_data);
         write(1, "\n", 1);
     }
 }
