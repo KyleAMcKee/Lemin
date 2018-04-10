@@ -6,7 +6,7 @@
 /*   By: rzarate <rzarate@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/03 17:13:56 by rzarate           #+#    #+#             */
-/*   Updated: 2018/04/09 17:15:05 by rzarate          ###   ########.fr       */
+/*   Updated: 2018/04/09 20:50:19 by rzarate          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,4 +114,5 @@ void			parse_input(t_lemin *lemin)
 	get_tunnels(&line, lemin);
 	if (!lemin->adj_list)
 		error();
+	find_room(lemin->rooms, get_num_of_start(lemin->rooms))->ants = lemin->graph_data->ants;
 }
