@@ -6,13 +6,13 @@
 /*   By: rzarate <rzarate@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/05 15:46:43 by rzarate           #+#    #+#             */
-/*   Updated: 2018/04/06 08:02:56 by rzarate          ###   ########.fr       */
+/*   Updated: 2018/04/09 17:15:55 by rzarate          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-t_path	*new_path(int **n, int length)
+t_path		*new_path(int **n, int length)
 {
 	t_path	*path;
 	int		i;
@@ -46,7 +46,7 @@ void		add_path(t_path **paths, t_path *new_path)
 void		delone_path(t_path **paths)
 {
 	t_path	*tmp;
-	
+
 	if (paths && *paths)
 	{
 		tmp = *paths;

@@ -6,7 +6,7 @@
 /*   By: rzarate <rzarate@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/03 17:13:56 by rzarate           #+#    #+#             */
-/*   Updated: 2018/04/05 09:25:15 by rzarate          ###   ########.fr       */
+/*   Updated: 2018/04/09 17:15:05 by rzarate          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ static	void	create_room(char *line, t_lemin *lemin, int start_end)
 	only_digits(splitted_line[2]);
 	coords[0] = ft_atoi(splitted_line[1]);
 	coords[1] = ft_atoi(splitted_line[2]);
-	// This might be changed with a ft_2d_strdel
 	ft_strdel(&splitted_line[0]);
 	ft_strdel(&splitted_line[1]);
 	ft_strdel(&splitted_line[2]);

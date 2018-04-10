@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lemin.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmckee <kmckee@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rzarate <rzarate@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/23 17:57:10 by kmckee            #+#    #+#             */
-/*   Updated: 2018/04/09 16:27:49 by kmckee           ###   ########.fr       */
+/*   Updated: 2018/04/09 17:10:56 by rzarate          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,40 +21,40 @@
 **	STRUCTURES
 */
 
-typedef	struct	s_path
+typedef	struct		s_path
 {
-	int		*moves;
-	int		len;
+	int				*moves;
+	int				len;
 	struct s_path	*next;
-}				t_path;
+}					t_path;
 
-typedef	struct	s_vertices
+typedef	struct			s_vertices
 {
-	int		n;
+	int					n;
 	struct s_vertices	*next;
-}				t_vertices;
+}						t_vertices;
 
-typedef struct  s_room
+typedef struct		s_room
 {
-    char    *name;
-    int     room_number;
-	int		coords[2];
-    int     start;
-    int     end;
-    int     ants;
-    int     visited;
-	int		parent;
-	int		distance;
-    struct s_room	*next;
-}               t_room;
+	char			*name;
+	int				room_number;
+	int				coords[2];
+	int				start;
+	int				end;
+	int				ants;
+	int				visited;
+	int				parent;
+	int				distance;
+	struct s_room	*next;
+}					t_room;
 
-typedef struct  s_graph
+typedef struct	s_graph
 {
-    int     ants;
-    int     start;
-    int     end;
-    int     rooms;
-}               t_graph;
+	int			ants;
+	int			start;
+	int			end;
+	int			rooms;
+}				t_graph;
 
 typedef	struct	s_lemin
 {
@@ -64,15 +64,17 @@ typedef	struct	s_lemin
 	t_path		*paths;
 }				t_lemin;
 
-typedef struct  s_queue_item {
-    t_room   *room;
-    struct  s_queue_item *next;
-}               t_queue_item;
+typedef struct			s_queue_item
+{
+	t_room				*room;
+	struct s_queue_item	*next;
+}						t_queue_item;
 
-typedef struct  s_queue {
-    t_queue_item  *first;
-    t_queue_item  *last;
-}               t_queue;
+typedef struct		s_queue
+{
+	t_queue_item	*first;
+	t_queue_item	*last;
+}					t_queue;
 
 /*
 **	MACROS
@@ -94,10 +96,10 @@ void		get_tunnels(char **line, t_lemin *lemin);
 **  QUEUE
 */
 
-t_queue     *init_queue(t_lemin *lemin);
-void        enqueue(t_queue *queue, t_room *room);
-void        dequeue(t_queue *queue);
-int         queue_empty(t_queue *queue);
+t_queue		*init_queue(t_lemin *lemin);
+void		enqueue(t_queue *queue, t_room *room);
+void		dequeue(t_queue *queue);
+int			queue_empty(t_queue *queue);
 void		del_queue(t_queue **queue);
 
 /*
@@ -118,7 +120,7 @@ int			check_if_part_of_path(t_lemin *lemin, int n);
 
 t_room		*find_room(t_room *rooms, int i);
 void		initialize_rooms(t_lemin *lemin, t_room *rooms);
-t_room		*new_room(char *name, int start_end, int coords[2], int room_number);
+t_room		*new_room(char *name, int start_end, int coords[2], int rn);
 void		add_room(t_room **rooms, t_room *new_room);
 void		delone_room(t_room **rooms);
 void		del_rooms(t_room **rooms);
@@ -137,6 +139,6 @@ void		del_paths(t_path **paths);
 **  MOVE ANTS
 */
 
-void    manage_ants(t_lemin *lemin);
+void		manage_ants(t_lemin *lemin);
 
 #endif

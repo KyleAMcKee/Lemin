@@ -6,13 +6,13 @@
 /*   By: rzarate <rzarate@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/04 04:18:49 by rzarate           #+#    #+#             */
-/*   Updated: 2018/04/09 15:23:01 by rzarate          ###   ########.fr       */
+/*   Updated: 2018/04/09 17:13:42 by rzarate          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-void	store_path(t_queue *queue, t_lemin *lemin)
+void		store_path(t_queue *queue, t_lemin *lemin)
 {
 	int	*n;
 	int len;
@@ -45,8 +45,10 @@ t_queue		*find_path(t_lemin *lemin)
 		{
 			if (find_room(lemin->rooms, adj_list->n)->visited == FALSE)
 			{
-				find_room(lemin->rooms, adj_list->n)->parent = CURRENT->room_number;
-				find_room(lemin->rooms, adj_list->n)->distance = CURRENT->distance + 1;
+				find_room(lemin->rooms, adj_list->n)->parent =
+												CURRENT->room_number;
+				find_room(lemin->rooms, adj_list->n)->distance =
+												CURRENT->distance + 1;
 				enqueue(queue, find_room(lemin->rooms, adj_list->n));
 			}
 			adj_list = adj_list->next;
@@ -63,7 +65,7 @@ t_queue		*find_path(t_lemin *lemin)
 **	to collectively move ants
 */
 
-void	         		solve(t_lemin *lemin)
+void		solve(t_lemin *lemin)
 {
 	t_queue	*queue;
 

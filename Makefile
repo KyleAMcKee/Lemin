@@ -27,7 +27,8 @@ SOURCES		=	main.c \
 				adjacency_list.c \
 				rooms.c \
 				paths.c \
-				utilities.c \
+				utilities_1.c \
+				utilities_2.c \
 				move_ants.c
  
 SRCS		=	$(addprefix $(SRCDIR), $(SOURCES))

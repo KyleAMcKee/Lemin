@@ -6,7 +6,7 @@
 /*   By: rzarate <rzarate@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/04 00:07:34 by rzarate           #+#    #+#             */
-/*   Updated: 2018/04/09 15:13:10 by rzarate          ###   ########.fr       */
+/*   Updated: 2018/04/09 17:12:38 by rzarate          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void		add_vertice(t_vertices **adj_list, t_vertices *new_vertice)
 void		delone_vertice(t_vertices **adj_list)
 {
 	t_vertices	*tmp;
-	
+
 	if (adj_list && *adj_list)
 	{
 		tmp = *adj_list;

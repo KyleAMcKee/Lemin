@@ -6,7 +6,7 @@
 /*   By: rzarate <rzarate@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/04 17:56:07 by kmckee            #+#    #+#             */
-/*   Updated: 2018/04/09 15:14:01 by rzarate          ###   ########.fr       */
+/*   Updated: 2018/04/09 17:18:47 by rzarate          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 /*
 **  Create queue to be used
 */
-#include <stdio.h> // delete me later!!!
-t_queue *init_queue(t_lemin *lemin)
+
+t_queue	*init_queue(t_lemin *lemin)
 {
 	t_queue *queue;
 
@@ -31,7 +31,7 @@ t_queue *init_queue(t_lemin *lemin)
 **  Add item to queue and check whether first and last items exist
 */
 
-void    enqueue(t_queue *queue, t_room *room)
+void	enqueue(t_queue *queue, t_room *room)
 {
 	t_queue_item	*new;
 
@@ -50,7 +50,7 @@ void    enqueue(t_queue *queue, t_room *room)
 **  Mark room as visited, remove from queue, and free
 */
 
-void    dequeue(t_queue *queue)
+void	dequeue(t_queue *queue)
 {
 	t_queue_item *temp;
 
@@ -66,7 +66,7 @@ void    dequeue(t_queue *queue)
 **	Checks if queue is empty
 */
 
-int     queue_empty(t_queue *queue)
+int		queue_empty(t_queue *queue)
 {
 	if (queue)
 	{
@@ -77,7 +77,7 @@ int     queue_empty(t_queue *queue)
 }
 
 /*
-**	
+**	Deletes all elements of queue
 */
 
 void	del_queue(t_queue **queue)
@@ -86,7 +86,7 @@ void	del_queue(t_queue **queue)
 
 	while ((*queue)->first)
 	{
-    	temp = (*queue)->first;
+		temp = (*queue)->first;
 		(*queue)->first = temp->next;
 		free(temp);
 		temp = NULL;

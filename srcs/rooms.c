@@ -6,13 +6,13 @@
 /*   By: rzarate <rzarate@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/03 18:52:21 by rzarate           #+#    #+#             */
-/*   Updated: 2018/04/09 15:10:28 by rzarate          ###   ########.fr       */
+/*   Updated: 2018/04/09 17:10:52 by rzarate          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-t_room	*new_room(char *name, int start_end, int coords[2], int room_number)
+t_room	*new_room(char *name, int start_end, int coords[2], int rn)
 {
 	t_room	*room;
 
@@ -22,7 +22,7 @@ t_room	*new_room(char *name, int start_end, int coords[2], int room_number)
 	room->name = name;
 	room->coords[0] = coords[0];
 	room->coords[1] = coords[1];
-	room->room_number = room_number;
+	room->room_number = rn;
 	if (start_end == 1)
 		room->start = 1;
 	if (start_end == 2)
