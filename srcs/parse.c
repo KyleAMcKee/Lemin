@@ -6,7 +6,7 @@
 /*   By: rzarate <rzarate@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/03 17:13:56 by rzarate           #+#    #+#             */
-/*   Updated: 2018/04/09 20:50:19 by rzarate          ###   ########.fr       */
+/*   Updated: 2018/04/10 14:46:14 by rzarate          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ static	void	get_number_of_ants(t_lemin *lemin)
 	char	*line;
 
 	lemin->graph_data = (t_graph *)ft_memalloc(sizeof(t_graph));
-	get_next_line(0, &line);
+	if (get_next_line(0, &line) < 1)
+		error();
 	lemin->graph_data->ants = ft_atoi(line);
 	if (lemin->graph_data->ants == 0)
 		error();

@@ -6,13 +6,13 @@
 /*   By: rzarate <rzarate@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/04 04:18:49 by rzarate           #+#    #+#             */
-/*   Updated: 2018/04/09 17:13:42 by rzarate          ###   ########.fr       */
+/*   Updated: 2018/04/10 16:27:15 by rzarate          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-void		store_path(t_queue *queue, t_lemin *lemin)
+int		store_path(t_queue *queue, t_lemin *lemin)
 {
 	int	*n;
 	int len;
@@ -29,6 +29,10 @@ void		store_path(t_queue *queue, t_lemin *lemin)
 		CURRENT = find_room(lemin->rooms, CURRENT->parent);
 	}
 	add_path(&lemin->paths, new_path(&n, len));
+	if (len == 2)
+		return (0);
+	else
+		return (1);
 }
 
 t_queue		*find_path(t_lemin *lemin)
@@ -68,14 +72,18 @@ t_queue		*find_path(t_lemin *lemin)
 void		solve(t_lemin *lemin)
 {
 	t_queue	*queue;
+	// t_path	*paths;
 
 	lemin->paths = NULL;
 	queue = NULL;
 	while ((queue = find_path(lemin)))
 	{
-		if (!queue && !lemin->paths)
+		if (!queue)
 			error();
-		store_path(queue, lemin);
+		if (store_path(queue, lemin) == 0)
+			break ;
 		del_queue(&queue);
 	}
+	if (!lemin->paths)
+		error();
 }
