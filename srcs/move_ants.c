@@ -6,7 +6,7 @@
 /*   By: kmckee <kmckee@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/05 15:28:08 by kmckee            #+#    #+#             */
-/*   Updated: 2018/04/10 15:19:44 by kmckee           ###   ########.fr       */
+/*   Updated: 2018/04/11 15:26:34 by kmckee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,12 @@ void    move_ants(t_room *rooms, t_path *paths, t_graph *graph)
             previous = find_room(rooms, paths->moves[i - 1]);
             if (previous->ants)
             {
-                if (current->end == 1)
+                if (current->end == 1 && previous->start == 1)
+                {
+                    current->ants++;
+                    previous->ants--;
+                }
+                else if (current->end == 1)
                 {
                     current->ants++;
                     previous->ants = 0;
