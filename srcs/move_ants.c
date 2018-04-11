@@ -6,7 +6,7 @@
 /*   By: kmckee <kmckee@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/05 15:28:08 by kmckee            #+#    #+#             */
-/*   Updated: 2018/04/11 15:26:34 by kmckee           ###   ########.fr       */
+/*   Updated: 2018/04/11 15:37:03 by kmckee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void    move_ants(t_room *rooms, t_path *paths, t_graph *graph)
             {
                 if (current->end == 1 && previous->start == 1)
                 {
-                    current->ants++;
+                    current->ants = ++ant;
                     previous->ants--;
                 }
                 else if (current->end == 1)
