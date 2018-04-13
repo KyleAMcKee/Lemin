@@ -6,7 +6,7 @@
 /*   By: rzarate <rzarate@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/04 16:52:04 by rzarate           #+#    #+#             */
-/*   Updated: 2018/04/05 09:24:36 by rzarate          ###   ########.fr       */
+/*   Updated: 2018/04/13 14:28:25 by rzarate          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,21 +56,18 @@ void			get_tunnels(char **line, t_lemin *lemin)
 												* lemin->graph_data->rooms);
 	while (*line || get_next_line(0, line))
 	{
+		check_if_intermediary_comment(line);
 		if (ft_strlen(*line) > 2 || ft_wordcountd(*line, '-') == 2)
 		{
 			splitted_line = ft_strsplit(*line, '-');
 			create_adjlist(splitted_line[0], splitted_line[1], lemin);
-			ft_putstr(*line);
-			ft_putchar('\n');
+			ft_putendl(*line);
 			ft_strdel(&splitted_line[0]);
 			ft_strdel(&splitted_line[1]);
 			free(splitted_line);
 		}
 		else if (ft_strlen(*line) > 1 && (*line)[0] == '#')
-		{
-			ft_putstr(*line);
-			ft_putchar('\n');
-		}
+			ft_putendl(*line);
 		else
 			error();
 		ft_strdel(line);

@@ -6,7 +6,7 @@
 /*   By: rzarate <rzarate@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/03 17:13:56 by rzarate           #+#    #+#             */
-/*   Updated: 2018/04/10 14:46:14 by rzarate          ###   ########.fr       */
+/*   Updated: 2018/04/13 14:31:55 by rzarate          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,12 @@ static	void	create_room(char *line, t_lemin *lemin, int start_end)
 	int		coords[2];
 	int		room_number;
 
+	if (!line || !line[0] || ft_wordcount(line) != 3)
+		error();
 	splitted_line = ft_strsplit(line, ' ');
 	name = ft_strdup(splitted_line[0]);
+	if (name[0] == 'L')
+		error();
 	only_digits(splitted_line[1]);
 	only_digits(splitted_line[2]);
 	coords[0] = ft_atoi(splitted_line[1]);
@@ -55,8 +59,7 @@ static	void	create_room(char *line, t_lemin *lemin, int start_end)
 	room_number = lemin->graph_data->rooms;
 	lemin->graph_data->rooms++;
 	add_room(&lemin->rooms, new_room(name, start_end, coords, room_number));
-	ft_putstr(line);
-	ft_putchar('\n');
+	ft_putendl(line);
 }
 
 /*
@@ -72,17 +75,14 @@ static	void	get_rooms(char **line, t_lemin *lemin)
 		if (ft_strlen(*line) > 4 && (*line)[0] == '#' && (*line)[1] == '#')
 		{
 			start_end = get_start_end(*line, lemin);
-			ft_putstr(*line);
-			ft_putchar('\n');
+			ft_putendl(*line);
 			ft_strdel(line);
 			get_next_line(0, line);
+			check_if_intermediary_comment(line);
 			create_room(*line, lemin, start_end);
 		}
 		else if (ft_strlen(*line) > 1 && (*line)[0] == '#')
-		{
-			ft_putstr((*line));
-			ft_putchar('\n');
-		}
+			ft_putendl((*line));
 		else if (ft_wordcount(*line) == 3)
 			create_room(*line, lemin, 0);
 		else if (ft_strchr(*line, '-'))
@@ -115,5 +115,6 @@ void			parse_input(t_lemin *lemin)
 	get_tunnels(&line, lemin);
 	if (!lemin->adj_list)
 		error();
-	find_room(lemin->rooms, get_num_of_start(lemin->rooms))->ants = lemin->graph_data->ants;
+	find_room(lemin->rooms, get_num_of_start(lemin->rooms))->ants =
+											lemin->graph_data->ants;
 }

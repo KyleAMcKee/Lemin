@@ -6,7 +6,7 @@
 /*   By: rzarate <rzarate@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/09 17:20:13 by rzarate           #+#    #+#             */
-/*   Updated: 2018/04/09 17:22:17 by rzarate          ###   ########.fr       */
+/*   Updated: 2018/04/13 14:27:09 by rzarate          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,17 @@ void	print_paths(t_lemin *lemin)
 			ft_putstr(find_room(lemin->rooms, lemin->paths->moves[i])->name);
 		ft_putchar('\n');
 		lemin->paths = lemin->paths->next;
+	}
+}
+
+void	check_if_intermediary_comment(char **line)
+{
+	if (!line || !(*line))
+		error();
+	if (ft_strlen(*line) > 1 && (*line)[0] == '#')
+	{
+		ft_putstr((*line));
+		ft_putchar('\n');
+		get_next_line(0, line);
 	}
 }
