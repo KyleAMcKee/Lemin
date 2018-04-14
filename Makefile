@@ -6,7 +6,7 @@
 #    By: kmckee <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/08 10:55:28 by kmckee            #+#    #+#              #
-#    Updated: 2018/04/09 16:12:50 by kmckee           ###   ########.fr        #
+#    Updated: 2018/04/14 10:13:29 by kmckee           ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -29,7 +29,8 @@ SOURCES		=	main.c \
 				paths.c \
 				utilities_1.c \
 				utilities_2.c \
-				move_ants.c
+				move_ants.c \
+				ant_utilities.c 
  
 SRCS		=	$(addprefix $(SRCDIR), $(SOURCES))
 OBJS		=	$(addprefix $(OBJDIR), $(SOURCES:.c=.o))

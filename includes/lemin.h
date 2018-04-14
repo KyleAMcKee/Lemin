@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lemin.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rzarate <rzarate@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kmckee <kmckee@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/23 17:57:10 by kmckee            #+#    #+#             */
-/*   Updated: 2018/04/13 13:57:48 by rzarate          ###   ########.fr       */
+/*   Updated: 2018/04/14 10:13:03 by kmckee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef struct		s_room
 	int				start;
 	int				end;
 	int				ants;
+	int				ant_id;
 	int				visited;
 	int				parent;
 	int				distance;
@@ -135,6 +136,11 @@ t_path		*new_path(int **n, int length);
 void		add_path(t_path **paths, t_path *new_path);
 void		delone_path(t_path **paths);
 void		del_paths(t_path **paths);
+
+int     	gcd(int a, int b);
+int     	least_common_multiple(t_path *paths);
+void    	free_last(t_path *paths);
+int     	number_of_paths(t_path *paths);
 
 /*
 **  MOVE ANTS
