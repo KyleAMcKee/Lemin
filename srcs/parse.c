@@ -6,7 +6,7 @@
 /*   By: rzarate <rzarate@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/03 17:13:56 by rzarate           #+#    #+#             */
-/*   Updated: 2018/04/13 14:31:55 by rzarate          ###   ########.fr       */
+/*   Updated: 2018/04/14 21:44:24 by rzarate          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static	void	create_room(char *line, t_lemin *lemin, int start_end)
 		error();
 	splitted_line = ft_strsplit(line, ' ');
 	name = ft_strdup(splitted_line[0]);
-	if (name[0] == 'L')
+	if (name[0] == 'L' || ft_strchr(name, '-'))
 		error();
 	only_digits(splitted_line[1]);
 	only_digits(splitted_line[2]);
