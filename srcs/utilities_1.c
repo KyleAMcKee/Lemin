@@ -6,7 +6,7 @@
 /*   By: rzarate <rzarate@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/03 17:03:46 by rzarate           #+#    #+#             */
-/*   Updated: 2018/04/14 21:42:16 by rzarate          ###   ########.fr       */
+/*   Updated: 2018/04/14 21:48:31 by rzarate          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ void	only_digits(char *s)
 	size_t	i;
 
 	i = -1;
+	if (s[++i] == '-' || s[++i] == '+')
+		;
 	while (s[++i])
 		(!ft_isdigit(s[i])) ? error() : 0;
 }
