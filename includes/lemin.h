@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lemin.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmckee <kmckee@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rzarate <rzarate@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/23 17:57:10 by kmckee            #+#    #+#             */
-/*   Updated: 2018/04/14 10:56:02 by kmckee           ###   ########.fr       */
+/*   Updated: 2018/04/14 21:18:38 by rzarate          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ void					only_digits(char *s);
 void					finalize_lemin(t_lemin *lemin);
 int						get_num_of_start(t_room *rooms);
 int						check_if_part_of_path(t_lemin *lemin, int n);
-void					check_if_intermediary_comment(char **line);
+int						check_if_intermediary_comment(char **line);
 
 t_room					*find_room(t_room *rooms, int i);
 void					initialize_rooms(t_lemin *lemin, t_room *rooms);
