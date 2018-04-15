@@ -6,7 +6,7 @@
 /*   By: rzarate <rzarate@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/09 17:20:13 by rzarate           #+#    #+#             */
-/*   Updated: 2018/04/14 21:19:19 by rzarate          ###   ########.fr       */
+/*   Updated: 2018/04/14 22:44:02 by kmckee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	print_paths(t_lemin *lemin)
 	}
 }
 
-int	check_if_intermediary_comment(char **line)
+int		check_if_intermediary_comment(char **line)
 {
 	if (!line || !(*line))
 		error();
