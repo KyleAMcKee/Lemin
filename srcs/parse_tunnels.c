@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_tunnels.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rzarate <rzarate@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kmckee <kmckee@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/04 16:52:04 by rzarate           #+#    #+#             */
-/*   Updated: 2018/04/14 21:22:33 by rzarate          ###   ########.fr       */
+/*   Updated: 2018/04/14 21:56:32 by kmckee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ static	void	create_adjlist(char *line_0, char *line_1, t_lemin *lemin)
 	t_room	*tmp2;
 
 	tmp = lemin->rooms;
+	if (line_0[0] == 'L' || line_1[0] == 'L')
+		error();
 	while (tmp)
 	{
 		if (ft_strequ(tmp->name, line_0))
