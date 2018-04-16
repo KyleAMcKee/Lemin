@@ -6,7 +6,7 @@
 /*   By: rzarate <rzarate@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/03 17:13:56 by rzarate           #+#    #+#             */
-/*   Updated: 2018/04/14 21:44:24 by rzarate          ###   ########.fr       */
+/*   Updated: 2018/04/16 13:15:05 by kmckee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static	void	create_room(char *line, t_lemin *lemin, int start_end)
 	int		coords[2];
 	int		room_number;
 
-	if (!line || !line[0] || ft_wordcount(line) != 3)
+	if (!line || !line[0] || ft_wordcount(line) != 3 || ft_strchr(line, '\t'))
 		error();
 	splitted_line = ft_strsplit(line, ' ');
 	name = ft_strdup(splitted_line[0]);
