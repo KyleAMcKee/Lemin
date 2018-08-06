@@ -1,6 +1,6 @@
 # 42 Project: Lem_in
 
-The purpose of this project is to find the shortest path on a graph to move 'ants' from start to end.
+The purpose of this project is to find the shortest path on a graph to move 'ants' from start to end. Ants could only move one room per turn, and no more than one ant could occupy a single node at one time.
 
 A text file is given as input, which specifies the number of ants, the rooms, and the links. It would look something like this:
 
@@ -33,12 +33,13 @@ A text file is given as input, which specifies the number of ants, the rooms, an
 Which corresponds to a graph:
 
 ```
-         _______________
-        /                \
-  ______[5]----[3]----[1]|
-/               |    /   |
-[6]-----[0]----[4]  /    |
- \    _________/|  /     |
-  \ /          [2]/_____ /
+           ______________
+         /                \
+  ______[5]----[3]----[1] |
+/               |    /    |
+[6]-----[0]----[4]  /     |
+ \    _________/|  /      |
+  \ /          [2]/______ /
    [7]_________/
 ```
+We used a breadth first algorithm to find optimal paths and then remove paths as the number of ants decreased. By using this method we were able to find the least number of turns for all ants to reach to end room.
